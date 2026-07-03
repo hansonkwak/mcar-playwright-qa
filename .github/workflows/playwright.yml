@@ -25,10 +25,11 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
+    # mcar-web 의존성 설치 경로를 하위 폴더(./mcar-web)로 수정 완료
     - name: Install Frontend dependencies
       run: |
-        if [ -d "../mcar-web" ]; then
-          cd ../mcar-web && npm ci
+        if [ -d "./mcar-web" ]; then
+          cd ./mcar-web && npm ci
         fi
 
     - name: Run Playwright tests
