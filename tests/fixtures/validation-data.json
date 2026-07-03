@@ -1,0 +1,26 @@
+[
+  {
+    "tcId": "TC-05",
+    "description": "차량번호 빈 값(Empty) 입력 시 유효성 검사 경고",
+    "carNumber": "",
+    "expectedError": "차량번호를 입력해주세요."
+  },
+  {
+    "tcId": "TC-06",
+    "description": "허용되지 않는 특수문자 포함 시 유효성 검사 경고",
+    "carNumber": "12가@3456",
+    "expectedError": "차량번호 형식이 올바르지 않습니다."
+  },
+  {
+    "tcId": "TC-08",
+    "description": "차량번호 띄어쓰기 포함 시 유효성 검사 경고",
+    "carNumber": "12가 3456",
+    "expectedError": "차량번호 형식이 올바르지 않습니다."
+  },
+  {
+    "tcId": "TC-15",
+    "description": "비정상적인 XSS 스크립트 입력 시 필터링 검증",
+    "carNumber": "<script>alert(1)</script>",
+    "expectedError": "차량번호 형식이 올바르지 않습니다."
+  }
+]
