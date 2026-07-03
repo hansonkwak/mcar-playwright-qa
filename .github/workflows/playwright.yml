@@ -13,10 +13,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    # Node.js 버전을 20 버전으로 업그레이드 완료!
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
         cache: 'npm'
 
     - name: Install dependencies
@@ -25,7 +26,6 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # mcar-web 의존성 설치 경로를 하위 폴더(./mcar-web)로 수정 완료
     - name: Install Frontend dependencies
       run: |
         if [ -d "./mcar-web" ]; then
