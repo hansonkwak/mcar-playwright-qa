@@ -5,6 +5,10 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# gh-pages 브랜치에 배포 리포트를 쓸 수 있도록 권한 부여
+permissions:
+  contents: write
+
 jobs:
   test:
     timeout-minutes: 60
@@ -13,7 +17,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Node.js 버전을 20 버전으로 업그레이드 완료!
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -42,3 +45,11 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    # 테스트 결과 리포트를 gh-pages 브랜치에 자동 배포
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      if: always() # 테스트 실패 시에도 원인 파악을 위해 리포트는 상시 배포
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./playwright-report
